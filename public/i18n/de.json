@@ -1,0 +1,67 @@
+{
+    "MENU": {
+        "HOME": "Startseite",
+        "DASHBOARD": "Dashboard",
+        "DEVELOPER": "Entwickler",
+        "API_DOCS": "API-Dokumentation"
+    },
+    "AUTH": {
+        "LOGIN": {
+            "WELCOME": "Willkommen bei BAKAI!",
+            "SUBTITLE": "Anmelden, um fortzufahren",
+            "EMAIL": "E-Mail",
+            "EMAIL_PLACEHOLDER": "E-Mail-Adresse",
+            "PASSWORD": "Passwort",
+            "PASSWORD_PLACEHOLDER": "Passwort",
+            "REMEMBER_ME": "Angemeldet bleiben",
+            "FORGOT_PASSWORD": "Passwort vergessen?",
+            "SIGN_IN": "Anmelden"
+        },
+        "ERROR": {
+            "TITLE": "Fehler aufgetreten",
+            "SUBTITLE": "Die angeforderte Ressource ist nicht verfügbar.",
+            "GO_TO_DASHBOARD": "Zum Dashboard"
+        },
+        "ACCESS": {
+            "TITLE": "Zugriff verweigert",
+            "SUBTITLE": "Sie haben nicht die erforderlichen Berechtigungen. Bitte kontaktieren Sie die Administratoren.",
+            "GO_TO_DASHBOARD": "Zum Dashboard"
+        }
+    },
+    "DASHBOARD": {
+        "STATS": {
+            "ORDERS": "Bestellungen",
+            "SINCE_LAST_VISIT": "seit dem letzten Besuch",
+            "REVENUE": "Umsatz",
+            "SINCE_LAST_WEEK": "seit letzter Woche",
+            "CUSTOMERS": "Kunden",
+            "NEWLY_REGISTERED": "neu registriert",
+            "COMMENTS": "Kommentare",
+            "UNREAD": "Ungelesen",
+            "RESPONDED": "beantwortet"
+        },
+        "MKV_MOVER": {
+            "TITLE": "MKV Mover",
+            "BACKEND_NOT_REACHABLE": "Backend nicht erreichbar",
+            "BACKEND_NOT_RUNNING": "Bitte stelle sicher, dass das Backend läuft.",
+            "SOURCE_FOLDER": "Quellordner",
+            "SOURCE_PLACEHOLDER": "z. B. D:\\Videos\\Quelle",
+            "TARGET_FOLDER": "Zielordner",
+            "TARGET_PLACEHOLDER": "z. B. D:\\Videos\\Ziel",
+            "CHOOSE_FOLDER": "Ordner wählen",
+            "COPY_SOURCE_PATH": "Quellpfad übernehmen",
+            "FILE_EXTENSION": "Dateiendung",
+            "MOVE": "Verschieben",
+            "FILES_MOVED": "{{count}} Datei(en) verschoben",
+            "MOVED_FILES": "Verschobene Dateien:",
+            "ERRORS": "Fehler:",
+            "UNKNOWN_ERROR": "Unbekannter Fehler"
+        }
+    },
+    "FOOTER": {
+        "TEXT": "BAKAI von"
+    },
+    "TOPBAR": {
+        "LANG_TOGGLE": "EN"
+    }
+}

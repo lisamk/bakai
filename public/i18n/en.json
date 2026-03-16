@@ -1,0 +1,67 @@
+{
+    "MENU": {
+        "HOME": "Home",
+        "DASHBOARD": "Dashboard",
+        "DEVELOPER": "Developer",
+        "API_DOCS": "API Docs"
+    },
+    "AUTH": {
+        "LOGIN": {
+            "WELCOME": "Welcome to BAKAI!",
+            "SUBTITLE": "Sign in to continue",
+            "EMAIL": "Email",
+            "EMAIL_PLACEHOLDER": "Email address",
+            "PASSWORD": "Password",
+            "PASSWORD_PLACEHOLDER": "Password",
+            "REMEMBER_ME": "Remember me",
+            "FORGOT_PASSWORD": "Forgot password?",
+            "SIGN_IN": "Sign In"
+        },
+        "ERROR": {
+            "TITLE": "Error Occurred",
+            "SUBTITLE": "Requested resource is not available.",
+            "GO_TO_DASHBOARD": "Go to Dashboard"
+        },
+        "ACCESS": {
+            "TITLE": "Access Denied",
+            "SUBTITLE": "You do not have the necessary permissions. Please contact admins.",
+            "GO_TO_DASHBOARD": "Go to Dashboard"
+        }
+    },
+    "DASHBOARD": {
+        "STATS": {
+            "ORDERS": "Orders",
+            "SINCE_LAST_VISIT": "since last visit",
+            "REVENUE": "Revenue",
+            "SINCE_LAST_WEEK": "since last week",
+            "CUSTOMERS": "Customers",
+            "NEWLY_REGISTERED": "newly registered",
+            "COMMENTS": "Comments",
+            "UNREAD": "Unread",
+            "RESPONDED": "responded"
+        },
+        "MKV_MOVER": {
+            "TITLE": "MKV Mover",
+            "BACKEND_NOT_REACHABLE": "Backend not reachable",
+            "BACKEND_NOT_RUNNING": "Please make sure the backend is running.",
+            "SOURCE_FOLDER": "Source folder",
+            "SOURCE_PLACEHOLDER": "e.g. D:\\Videos\\Source",
+            "TARGET_FOLDER": "Target folder",
+            "TARGET_PLACEHOLDER": "e.g. D:\\Videos\\Target",
+            "CHOOSE_FOLDER": "Choose folder",
+            "COPY_SOURCE_PATH": "Copy source path",
+            "FILE_EXTENSION": "File extension",
+            "MOVE": "Move",
+            "FILES_MOVED": "{{count}} file(s) moved",
+            "MOVED_FILES": "Moved files:",
+            "ERRORS": "Errors:",
+            "UNKNOWN_ERROR": "Unknown error"
+        }
+    },
+    "FOOTER": {
+        "TEXT": "BAKAI by"
+    },
+    "TOPBAR": {
+        "LANG_TOGGLE": "DE"
+    }
+}

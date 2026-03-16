@@ -1,59 +1,60 @@
-# Sakai19
+# BAKAI – Home Server Dashboard
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.
+Ein Angular-basiertes Web-Frontend zur Verwaltung und Überwachung eines Home Servers.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- **Dashboard** – Übersicht über Server-Kennzahlen (Bestellungen, Umsatz, Kunden, Kommentare)
+- **MKV Mover** – Dateien (z. B. MKV-Videos) von einem Quellordner in einen Zielordner auf dem Server verschieben
+- **API-Dokumentation** – Eingebettete Swagger UI zur Erkundung der Backend-REST-API
+- **Mehrsprachigkeit** – Deutsch und Englisch, umschaltbar per Klick in der Topbar
+- **Dark Mode** – Helles und dunkles Theme umschaltbar
+
+## Voraussetzungen
+
+- Node.js
+- Angular CLI
+- Backend-Server läuft auf `http://localhost:8080`
+
+## Entwicklung
 
 ```bash
+npm install
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Anschließend im Browser `http://localhost:4200/` öffnen.
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+## Build
 
 ```bash
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Die Build-Artefakte landen im `dist/`-Verzeichnis.
 
-## Running unit tests
+## Projektstruktur
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
+```
+src/
+├── app/
+│   ├── layout/          # Topbar, Sidebar, Footer, Menü
+│   ├── pages/
+│   │   ├── dashboard/   # Dashboard mit Widgets
+│   │   ├── apidocs/     # Swagger UI Einbettung
+│   │   └── auth/        # Login, Fehlerseiten
+│   └── shared/          # Wiederverwendbare Komponenten
+└── assets/
+    └── i18n/            # Übersetzungsdateien (de.json, en.json)
+public/
+└── i18n/                # Übersetzungsdateien (Laufzeit)
 ```
 
-## Running end-to-end tests
+## Technologien
 
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+| Technologie | Version |
+|---|---|
+| Angular | 21 |
+| PrimeNG | 21 |
+| Tailwind CSS | 4 |
+| ngx-translate | – |

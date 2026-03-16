@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-root',
@@ -7,4 +8,11 @@ import { RouterModule } from '@angular/router';
     imports: [RouterModule],
     template: `<router-outlet></router-outlet>`
 })
-export class AppComponent {}
+export class AppComponent {
+    private translate = inject(TranslateService);
+
+    constructor() {
+        const savedLang = localStorage.getItem('lang') ?? 'de';
+        this.translate.use(savedLang);
+    }
+}

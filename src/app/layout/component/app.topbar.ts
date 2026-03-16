@@ -1,10 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { StyleClassModule } from 'primeng/styleclass';
 import { AppConfigurator } from './app.configurator';
 import { LayoutService } from '@/app/layout/service/layout.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-topbar',
@@ -33,12 +34,15 @@ import { LayoutService } from '@/app/layout/service/layout.service';
                         />
                     </g>
                 </svg>
-                <span>SAKAI</span>
+                <span>BAKAI</span>
             </a>
         </div>
 
         <div class="layout-topbar-actions">
             <div class="layout-config-menu">
+                <button type="button" class="layout-topbar-action font-bold text-sm" (click)="toggleLanguage()" title="Sprache wechseln">
+                    {{ currentLang().toUpperCase() }}
+                </button>
                 <button type="button" class="layout-topbar-action" (click)="toggleDarkMode()">
                     <i [ngClass]="{ 'pi ': true, 'pi-moon': layoutService.isDarkTheme(), 'pi-sun': !layoutService.isDarkTheme() }"></i>
                 </button>
@@ -61,7 +65,7 @@ import { LayoutService } from '@/app/layout/service/layout.service';
             <button class="layout-topbar-menu-button layout-topbar-action" pStyleClass="@next" enterFromClass="hidden" enterActiveClass="animate-scalein" leaveToClass="hidden" leaveActiveClass="animate-fadeout" [hideOnOutsideClick]="true">
                 <i class="pi pi-ellipsis-v"></i>
             </button>
-
+<!--
             <div class="layout-topbar-menu hidden lg:block">
                 <div class="layout-topbar-menu-content">
                     <button type="button" class="layout-topbar-action">
@@ -77,7 +81,7 @@ import { LayoutService } from '@/app/layout/service/layout.service';
                         <span>Profile</span>
                     </button>
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>`
 })
@@ -85,11 +89,21 @@ export class AppTopbar {
     items!: MenuItem[];
 
     layoutService = inject(LayoutService);
+    private translateService = inject(TranslateService);
+
+    currentLang = signal(localStorage.getItem('lang') ?? 'de');
 
     toggleDarkMode() {
         this.layoutService.layoutConfig.update((state) => ({
             ...state,
             darkTheme: !state.darkTheme
         }));
+    }
+
+    toggleLanguage() {
+        const newLang = this.currentLang() === 'de' ? 'en' : 'de';
+        this.currentLang.set(newLang);
+        this.translateService.use(newLang);
+        localStorage.setItem('lang', newLang);
     }
 }

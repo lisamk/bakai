@@ -1,0 +1,140 @@
+<div class="card">
+    <div class="font-semibold text-xl mb-6">{{ 'DASHBOARD.MKV_MOVER.TITLE' | translate }}</div>
+
+    <!-- Backend not reachable -->
+    <app-backend-offline-message *ngIf="backendAvailable() === false"></app-backend-offline-message>
+
+    <!-- Loading state -->
+    <div *ngIf="backendAvailable() === null" class="flex justify-center py-6">
+        <i class="pi pi-spin pi-spinner text-2xl"></i>
+    </div>
+
+    <div *ngIf="backendAvailable() === true" class="flex flex-col gap-4">
+
+        <!-- Source Folder -->
+        <div class="flex flex-col gap-1">
+            <label class="font-medium text-sm">{{ 'DASHBOARD.MKV_MOVER.SOURCE_FOLDER' | translate }}</label>
+            <div class="flex gap-2">
+                <input
+                    pInputText
+                    type="text"
+                    [(ngModel)]="sourceFolder"
+                    [placeholder]="'DASHBOARD.MKV_MOVER.SOURCE_PLACEHOLDER' | translate"
+                    class="flex-1"
+                />
+                <button
+                    pButton
+                    type="button"
+                    icon="pi pi-folder-open"
+                    (click)="openPicker('source')"
+                    [pTooltip]="'DASHBOARD.MKV_MOVER.CHOOSE_FOLDER' | translate"
+                    tooltipPosition="top"
+                ></button>
+            </div>
+        </div>
+
+        <!-- Target Folder + Copy + Browse Button -->
+        <div class="flex flex-col gap-1">
+            <label class="font-medium text-sm">{{ 'DASHBOARD.MKV_MOVER.TARGET_FOLDER' | translate }}</label>
+            <div class="flex gap-2">
+                <input
+                    pInputText
+                    type="text"
+                    [(ngModel)]="targetFolder"
+                    [placeholder]="'DASHBOARD.MKV_MOVER.TARGET_PLACEHOLDER' | translate"
+                    class="flex-1"
+                />
+                <button
+                    pButton
+                    type="button"
+                    icon="pi pi-folder-open"
+                    (click)="openPicker('target')"
+                    [pTooltip]="'DASHBOARD.MKV_MOVER.CHOOSE_FOLDER' | translate"
+                    tooltipPosition="top"
+                ></button>
+                <button
+                    pButton
+                    type="button"
+                    icon="pi pi-copy"
+                    [disabled]="!canCopySource"
+                    (click)="copySourceToTarget()"
+                    [pTooltip]="'DASHBOARD.MKV_MOVER.COPY_SOURCE_PATH' | translate"
+                    tooltipPosition="top"
+                ></button>
+            </div>
+        </div>
+
+        <!-- Extension -->
+        <div class="flex flex-col gap-1">
+            <label class="font-medium text-sm">{{ 'DASHBOARD.MKV_MOVER.FILE_EXTENSION' | translate }}</label>
+            <input
+                pInputText
+                type="text"
+                [(ngModel)]="extension"
+                placeholder="mkv"
+                class="w-full"
+            />
+        </div>
+
+        <!-- Move Button -->
+        <div class="flex items-center gap-3 mt-2">
+            <button
+                pButton
+                type="button"
+                [label]="'DASHBOARD.MKV_MOVER.MOVE' | translate"
+                icon="pi pi-folder-open"
+                [disabled]="loading() || !sourceFolder.trim() || !targetFolder.trim() || !extension.trim()"
+                (click)="move()"
+                class="p-button-primary"
+            ></button>
+            <p-progressSpinner
+                *ngIf="loading()"
+                styleClass="w-8 h-8"
+                strokeWidth="4"
+            ></p-progressSpinner>
+        </div>
+
+        <!-- Error -->
+        <p-message
+            *ngIf="errorMessage()"
+            severity="error"
+            [text]="errorMessage()"
+        ></p-message>
+
+        <!-- Result -->
+        <div *ngIf="result()" class="flex flex-col gap-2">
+            <p-message
+                severity="success"
+                [text]="getMovedFilesText(result()!.movedFiles.length)"
+            ></p-message>
+
+            <div *ngIf="result()!.movedFiles.length > 0" class="text-sm">
+                <div class="font-medium mb-1">{{ 'DASHBOARD.MKV_MOVER.MOVED_FILES' | translate }}</div>
+                <ul class="list-none p-0 m-0 max-h-48 overflow-y-auto">
+                    <li
+                        *ngFor="let f of result()!.movedFiles"
+                        class="py-1 border-b border-surface text-surface-600 dark:text-surface-300 break-all"
+                    >
+                        <i class="pi pi-check text-green-500 mr-2"></i>{{ f }}
+                    </li>
+                </ul>
+            </div>
+
+            <div *ngIf="result()!.errors.length > 0" class="text-sm">
+                <div class="font-medium mb-1 text-red-500">{{ 'DASHBOARD.MKV_MOVER.ERRORS' | translate }}</div>
+                <ul class="list-none p-0 m-0">
+                    <li
+                        *ngFor="let e of result()!.errors"
+                        class="py-1 text-red-400 break-all"
+                    >
+                        <i class="pi pi-times mr-2"></i>{{ e }}
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Folder Picker Dialog -->
+<app-folder-picker (folderSelected)="onFolderSelected($event)"></app-folder-picker>
