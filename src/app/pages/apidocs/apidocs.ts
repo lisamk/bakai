@@ -3,7 +3,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { BackendOfflineMessage } from '../../shared/backend-offline-message/backend-offline-message';
-import {environment} from '../../../environments/environment';
+import {environment} from "@/environments/environment";
 
 @Component({
     selector: 'app-apidocs',
