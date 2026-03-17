@@ -3,6 +3,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { BackendOfflineMessage } from '../../shared/backend-offline-message/backend-offline-message';
+import {environment} from "@/environments/environment";
 
 @Component({
     selector: 'app-apidocs',
@@ -38,12 +39,12 @@ export class ApiDocs implements OnInit {
 
     constructor() {
         this.swaggerUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-            'http://localhost:8080/swagger-ui/index.html'
+            `${environment.apiUrl}/swagger-ui/index.html`
         );
     }
 
     ngOnInit(): void {
-        this.http.get('/api/files/browse', { params: { path: '' } }).subscribe({
+        this.http.get(`${environment.apiUrl}/api/files/browse`, { params: { path: '' } }).subscribe({
             next: () => this.backendAvailable.set(true),
             error: () => this.backendAvailable.set(false)
         });
