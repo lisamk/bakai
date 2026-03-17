@@ -5,7 +5,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci
 
-COPY ../../Downloads/final-configs-v2/final/angular-app .
+COPY . .
 RUN npm run build -- --configuration production
 
 # ── Stage 2: Serve ──────────────────────────────────────────────────────────
