@@ -1,5 +1,6 @@
 import { Component, inject, output, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '@/environments/environment';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
@@ -108,7 +109,7 @@ export class FolderPicker {
     navigate(path: string): void {
         this.loading.set(true);
         this.selected.set(path || '');
-        this.http.get<BrowseResponse>('/api/files/browse', { params: { path } }).subscribe({
+        this.http.get<BrowseResponse>(`${environment.apiUrl}/api/files/browse`, { params: { path } }).subscribe({
             next: (res) => {
                 this.dirs.set(res.directories);
                 this.currentPath.set(res.currentPath);

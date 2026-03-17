@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { FolderPicker } from '@/app/shared/folder-picker/folder-picker';
 import { BackendOfflineMessage } from '@/app/shared/backend-offline-message/backend-offline-message';
+import { environment } from '@/environments/environment';
 
 interface MoveResult {
     movedFiles: string[];
@@ -37,7 +38,7 @@ export class Mkvmoverwidget implements OnInit {
     backendAvailable = signal<boolean | null>(null);
 
     ngOnInit(): void {
-        this.http.get('/api/files/browse', { params: { path: '' } }).subscribe({
+        this.http.get(`${environment.apiUrl}/api/files/browse`, { params: { path: '' } }).subscribe({
             next: () => this.backendAvailable.set(true),
             error: () => this.backendAvailable.set(false)
         });
@@ -72,7 +73,7 @@ export class Mkvmoverwidget implements OnInit {
         this.errorMessage.set('');
         this.loading.set(true);
 
-        this.http.post<MoveResult>('/api/files/move', {
+        this.http.post<MoveResult>(`${environment.apiUrl}/api/files/move`, {
             sourceFolder: this.sourceFolder.trim(),
             targetFolder: this.targetFolder.trim(),
             extension: this.extension.trim().replace(/^\./, '')
