@@ -1,4 +1,6 @@
 export const environment = {
-    production: false,
-    apiUrl: 'http://localhost:8080'
+    production: typeof location !== 'undefined' && location.hostname !== 'localhost',
+    apiUrl: typeof location !== 'undefined' && location.hostname !== 'localhost'
+        ? 'https://bakai-backend.b3-home.space'
+        : 'http://localhost:8080'
 };
