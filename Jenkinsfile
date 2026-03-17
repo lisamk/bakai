@@ -37,18 +37,18 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh """
+                sh '''
                     docker run -d \
-                        --name ${CONTAINER_NAME} \
-                        --network ${NETWORK} \
+                        --name angular-app \
+                        --network traefik-net \
                         --restart unless-stopped \
                         --label "traefik.enable=true" \
-                        --label "traefik.http.routers.angular.rule=Host(\`bakai.b3-home.space\`)" \
+                        --label "traefik.http.routers.angular.rule=Host(`bakai.b3-home.space`)" \
                         --label "traefik.http.routers.angular.entrypoints=websecure" \
                         --label "traefik.http.routers.angular.tls=true" \
                         --label "traefik.http.services.angular.loadbalancer.server.port=80" \
-                        ${IMAGE_NAME}:latest
-                """
+                        angular-app:latest
+                '''
             }
         }
 
