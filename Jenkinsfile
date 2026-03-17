@@ -2,18 +2,15 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME    = 'bakai'
-        CONTAINER_NAME = 'bakai'
-        // Port nur intern – Traefik routet nach außen
-        INTERNAL_PORT = '80'
-        NETWORK       = 'traefik-net'
+        IMAGE_NAME     = 'angular-app'
+        CONTAINER_NAME = 'angular-app'
+        NETWORK        = 'traefik-net'
     }
 
     stages {
 
         stage('Checkout') {
             steps {
-                // Jenkins checkt automatisch den konfigurierten GitHub-Repo aus
                 checkout scm
             }
         }
@@ -38,7 +35,7 @@ pipeline {
             }
         }
 
-        stage('Deploy New Container') {
+        stage('Deploy') {
             steps {
                 sh """
                     docker run -d \
@@ -46,24 +43,24 @@ pipeline {
                         --network ${NETWORK} \
                         --restart unless-stopped \
                         --label "traefik.enable=true" \
-                        --label "traefik.http.routers.angular.rule=Host(\`app.b3-home.space\`)" \
+                        --label "traefik.http.routers.angular.rule=Host(\`bakai.b3-home.space\`)" \
                         --label "traefik.http.routers.angular.entrypoints=websecure" \
                         --label "traefik.http.routers.angular.tls=true" \
-                        --label "traefik.http.services.angular.loadbalancer.server.port=${INTERNAL_PORT}" \
+                        --label "traefik.http.services.angular.loadbalancer.server.port=80" \
                         ${IMAGE_NAME}:latest
                 """
             }
         }
 
-        stage('Cleanup Old Images') {
+        stage('Cleanup') {
             steps {
-                sh "docker image prune -f --filter label=image=${IMAGE_NAME}"
+                sh "docker image prune -f"
             }
         }
     }
 
     post {
-        success { echo "✅ Angular App erfolgreich deployed!" }
+        success { echo "✅ Angular App deployed auf bakai.b3-home.space" }
         failure { echo "❌ Build fehlgeschlagen – bitte Logs prüfen." }
     }
 }
