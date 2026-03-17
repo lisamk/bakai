@@ -43,7 +43,7 @@ pipeline {
                         --network traefik-net \
                         --restart unless-stopped \
                         --label "traefik.enable=true" \
-                        --label "traefik.http.routers.angular.rule=Host(`bakai.b3-home.space`)" \
+                        --label 'traefik.http.routers.angular.rule=Host(`bakai.b3-home.space`)' \
                         --label "traefik.http.routers.angular.entrypoints=websecure" \
                         --label "traefik.http.routers.angular.tls=true" \
                         --label "traefik.http.services.angular.loadbalancer.server.port=80" \
