@@ -18,7 +18,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh """
-                    docker build \
+                    docker build --no-cache \
                         -t ${IMAGE_NAME}:${BUILD_NUMBER} \
                         -t ${IMAGE_NAME}:latest \
                         -f Dockerfile .
