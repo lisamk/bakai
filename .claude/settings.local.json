@@ -4,7 +4,11 @@
       "Bash(cat:*)",
       "Bash(node:*)",
       "WebSearch",
-      "Bash(cd:*)"
+      "Bash(cd:*)",
+      "Bash(curl -s \"https://bakai-backend.b3-home.space/v3/api-docs\")",
+      "Bash(curl:*)",
+      "Bash(./mvnw dependency:tree -Dincludes=\"tools.jackson.core:jackson-core,com.fasterxml.jackson.core:jackson-core\")",
+      "Bash(mvn dependency:resolve -Dincludes=\"com.fasterxml.jackson.core:jackson-databind,com.fasterxml.jackson.datatype:jackson-datatype-jsr310,com.fasterxml.jackson.core:jackson-core\")"
     ]
   }
 }
